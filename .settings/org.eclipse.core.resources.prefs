@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/java/com/seckill/dao=gbk
+encoding//src/main/java/com/seckill/dtoentity=gbk
+encoding//src/main/java/com/seckill/entity=gbk
+encoding//src/main/java/com/seckill/enums=GBK
+encoding//src/main/java/com/seckill/exception=GBK
+encoding//src/main/java/com/seckill/service/SeckillService.java=GBK
+encoding//src/main/java/com/seckill/service/impl/SeckillServiceImpl.java=GBK
+encoding//src/main/java/com/seckill/web/SeckillController.java=GBK
+encoding//src/main/resources/jdbc-dbcp.properties=UTF-8
+encoding//src/main/resources/log4j.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/jsps/common/head.jsp=UTF-8
+encoding//src/test/java=UTF-8
+encoding//src/test/java/com/seckill/dao=GBK
+encoding//src/test/java/com/seckill/dao/SuccessKilledDaoTest.java=GBK
+encoding//src/test/java/com/seckill/service/SeckillServiceTest.java=GBK

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2009-2016 the original author or authors. Licensed under the 
+	Apache License, Version 2.0 (the "License"); you may not use this file except 
+	in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- sql语句配置 -->
+<mapper namespace="com.seckill.dao.ManageSeckillDao">
+
+	<update id="updateTime">
+		update seckill set
+		start_time=#{sTime},end_time=#{eTime}
+		where seckill_id=#{seckillId}
+	</update>
+
+	<!-- 分页查询 -->
+	<select id="querySeckillListByPage" resultType="Seckill">
+		select
+		<include refid="common" />
+		from seckill
+		<where>
+			<if
+				test="seckill.name != null and !&quot;&quot;.equals(seckill.name.trim())">
+				and name like '%' #{seckill.name} '%'
+			</if>
+		</where>
+		order by seckill_id limit #{page.dbIndex},#{page.dbNumber}
+	</select>
+
+	<!-- 数据列表数量查询 -->
+	<select id="queryListCount" resultType="int">
+		select count(*) from seckill
+		<where>
+			<if test="_parameter != null and !&quot;&quot;.equals(_parameter.trim())">
+				and name like '%' #{_parameter} '%'
+			</if>
+		</where>
+	</select>
+
+	<insert id="insertBatch" parameterType="List">
+		insert into seckill (name,number,start_time,end_time)
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.name},#{item.number},#{item.sTime},#{item.eTime})
+		</foreach>
+	</insert>
+
+	<delete id="deleteOne">
+		delete from seckill where seckill_id=#{_seckillId}
+	</delete>
+
+	<delete id="deleteBatch">
+		delete from seckill where seckill_id
+		in(
+		<foreach collection="list" item="item" separator=",">
+			#{item}
+		</foreach>
+		)
+	</delete>
+
+	<sql id="common">
+		seckill_id,name,number,create_time,start_time,end_time
+	</sql>
+
+</mapper>
